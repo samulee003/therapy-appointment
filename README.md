@@ -41,6 +41,8 @@ npm run build
 VITE_API_BASE_URL=http://your-api-server-url
 ```
 
+公開註冊只會建立患者帳號；治療師及管理員角色須由現有管理員透過後端用戶管理 API 指派。部署後應檢查既有帳號的角色，並確認後端設定了強且保密的 `JWT_SECRET`；未設定時現有後端會使用不安全的預設備援金鑰。
+
 ### 重要注意事項
 
 - 如果在Zeabur或其他雲服務部署，務必在環境設置中配置 `VITE_API_BASE_URL`，指向後端服務的URL

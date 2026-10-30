@@ -9,7 +9,12 @@ const { JWT_SECRET } = require('../middlewares/auth');
 // 註冊新用戶
 const register = (db) => async (req, res) => {
   try {
-    const { name, email, password, role = 'patient', username, phone } = req.body;
+    const { name, email, password, username, phone } = req.body;
+    const role = 'patient';
+
+    if (req.body.role !== undefined && req.body.role !== role) {
+      return res.status(403).json({ error: '公開註冊僅限患者帳號' });
+    }
     
     // 使用 email 或 username 作為用戶 email
     const userEmail = email || username;

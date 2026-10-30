@@ -51,6 +51,13 @@ const updateUser = (db) => async (req, res) => {
     const { userId } = req.params;
     const { name, email, password, role } = req.body;
 
+    if (role !== undefined && req.user.role !== 'admin') {
+      return res.status(403).json({ error: '只有管理員可以修改用戶角色' });
+    }
+    if (role !== undefined && !['patient', 'doctor', 'admin'].includes(role)) {
+      return res.status(400).json({ error: '無效的用戶角色' });
+    }
+
     // 檢查用戶是否存在
     db.get('SELECT * FROM users WHERE id = ?', [userId], async (err, user) => {
       if (err) {

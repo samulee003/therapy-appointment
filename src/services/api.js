@@ -167,7 +167,7 @@ export const getCurrentUser = () => {
 
 // ADDED: User Registration (Matches POST /api/register)
 export const registerUser = registrationData => {
-  // registrationData should contain { username, password, name, role }
+  // registrationData should contain { username, password, name, phone }
   return apiClient.post('/api/auth/register', registrationData); // 修改為標準路徑
 };
 

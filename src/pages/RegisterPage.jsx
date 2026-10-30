@@ -12,11 +12,6 @@ import {
   InputAdornment,
   IconButton,
   Divider,
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
   Stepper,
   Step,
   StepLabel,
@@ -49,7 +44,6 @@ const RegisterPage = () => {
     phone: '',
     password: '',
     confirmPassword: '',
-    role: 'patient',
   });
 
   // 表單驗證錯誤
@@ -239,7 +233,6 @@ const RegisterPage = () => {
       password: formData.password,
       name: formData.name,
       phone: formData.phone,
-      role: formData.role,
     };
 
     try {
@@ -333,23 +326,7 @@ const RegisterPage = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControl component="fieldset" required>
-                <FormLabel component="legend">註冊身份 (Role)</FormLabel>
-                <RadioGroup
-                  row
-                  aria-label="role"
-                  name="role"
-                  value={formData.role}
-                  onChange={handleChange}
-                >
-                  <FormControlLabel value="patient" control={<Radio />} label="患者 (Patient)" />
-                  <FormControlLabel
-                    value="doctor"
-                    control={<Radio />}
-                    label="心理治療師 (Therapist)"
-                  />
-                </RadioGroup>
-              </FormControl>
+              <Typography variant="body2">公開註冊為患者帳號；治療師帳號請聯絡管理員。</Typography>
             </Grid>
           </Grid>
         );
@@ -460,7 +437,7 @@ const RegisterPage = () => {
                 <Typography>身份:</Typography>
               </Grid>
               <Grid item xs={6} sx={{ textAlign: 'left' }}>
-                <Typography>{formData.role === 'patient' ? '患者' : '心理治療師'}</Typography>
+                <Typography>患者</Typography>
               </Grid>
             </Grid>
             <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
